@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,23 +27,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "Création de l'activité");
 
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean atboot = prefs.getBoolean("checked", false);
 
         //stopService(new Intent(this, MainService.class));
         TextView textView5 = (TextView)findViewById(R.id.textView5);
-        textView5.setText(" Arrêté");
+        textView5.setText("Arrêté");
 
-        /*CheckBox checkBox = (CheckBox)findViewById(R.id.checkbox1);
+        final CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
+        if (atboot) {
+            checkBox.setChecked(true);
+        }
+        else {
+            checkBox.setChecked(false);
+        }
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = prefs.edit();
+
                 if (isChecked) {
                     Log.d("MainActivity", "Bouton coché");
+                    editor.putBoolean("checked", true);
+                    editor.commit();
                 }
                 else {
                     Log.d("MainActivity", "Bouton décoché");
+                    editor.putBoolean("checked", false);
+                    editor.commit();
                 }
             }
-        });*/
+        });
 
         Button b = (Button)findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void preferences(View view) {
-        startActivity(new PreferencesClass().getIntent());
     }
 }
 
