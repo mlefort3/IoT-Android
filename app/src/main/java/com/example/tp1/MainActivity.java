@@ -3,16 +3,31 @@ package com.example.tp1;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     //Boolean atboot = prefs.getBoolean("checked", false);
 
     public boolean button1clicked = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button web = (Button)findViewById(R.id.webbutton);
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+            }
+        });
     }
 
     public void startService() {
@@ -89,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         stopService(new Intent(this, MainService.class));
     }
 
-    public void preferences(View view) {
+    public void throwAlarm(int code) {
+        Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
     }
 }
 
