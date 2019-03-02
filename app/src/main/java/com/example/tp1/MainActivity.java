@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -29,6 +30,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import static android.content.Intent.ACTION_SEND;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //startService(new Intent(this, ServiceGet.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "Création de l'activité");
@@ -101,7 +105,18 @@ public class MainActivity extends AppCompatActivity {
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+                //new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+               String[] recipients = new String[]{"yann.ricci@gmail.com", "",};
+               emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recipients);
+               emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Test");
+               emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Message");
+               // emailIntent.setType("text/plain");
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+               // finish();
+
             }
         });
     }

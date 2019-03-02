@@ -24,6 +24,7 @@
         </activity>
 
         <service android:name=".MainService"/>
+        <service android:name=".ServiceGet"/>
 
         <receiver android:name="com.example.tp1.BootBroadcastReceiver"
             android:enabled="true"
