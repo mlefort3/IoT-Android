@@ -219,6 +219,19 @@ public class FetchData extends AsyncTask<String, Void, String> {
         }
         reader.endObject();
 
+        boolean check = true;
+        for (Data data:datalist) {
+            if (data.moteAddress.equalsIgnoreCase(moteAddress)) {
+                check = false;
+            }
+        }
+        if (check) {
+            if ((label.equalsIgnoreCase("light1")) || (label.equalsIgnoreCase("light2"))) {
+                FetchTaskMail mailtask = new FetchTaskMail();
+                mailtask.execute();
+            }
+        }
+
         return new Data(timestamp, label, value, moteAddress);
     }
 }

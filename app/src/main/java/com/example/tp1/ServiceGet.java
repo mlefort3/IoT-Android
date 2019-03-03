@@ -33,6 +33,7 @@ public class ServiceGet extends Service {
                                 "http://iotlab.telecomnancy.eu/rest/data/1/battery_voltage/last",
                                 "http://iotlab.telecomnancy.eu/rest/data/1/light1/last",
                                 "http://iotlab.telecomnancy.eu/rest/data/1/light2/last"});
+                        new FetchTask(new MotesListActivity()).execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
                     }
                 });
             }

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         //stopService(new Intent(this, MainService.class));
 
         if (atboot) {
-            //refreshList();
+            refreshList();
         }
 
         //final ListView listView = (ListView) findViewById(R.id.listview_main);
