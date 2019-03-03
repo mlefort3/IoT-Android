@@ -23,6 +23,12 @@
 
         </activity>
 
+        <activity android:name=".PreferencesActivity" android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".MotesListActivity" android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".WebActivity" android:parentActivityName=".MainActivity"/>
+
         <service android:name=".MainService"/>
 
         <receiver android:name="com.example.tp1.BootBroadcastReceiver"
