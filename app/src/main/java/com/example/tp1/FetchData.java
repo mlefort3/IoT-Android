@@ -15,7 +15,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -194,7 +196,19 @@ public class FetchData extends AsyncTask<String, Void, String> {
                 System.out.println(value);
                 if(value>1){
                 if(label.equals("light1")||label.equals("light2")){
-                    System.out.println("OOOOOOOOOOOOOOPPPPPPP");
+
+                    Date d=new  Date();
+                    SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+                    String sss = f.format(d);
+                    String hour = sss.substring(9,11);
+                    if(Integer.parseInt(hour)>=19 && Integer.parseInt(hour)<=23){
+                        System.out.println("plop");
+                        //FetchTaskMail mailtask = new FetchTaskMail(label);
+                        //mailtask.execute();
+
+                    }
+
+
                     NotificationManager notif= (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
                     Notification notify=new Notification.Builder
                             (activity.getApplicationContext()).setContentTitle("Motes TP").setContentText("Lumière allumée").
@@ -227,7 +241,8 @@ public class FetchData extends AsyncTask<String, Void, String> {
         }
         if (check) {
             if ((label.equalsIgnoreCase("light1")) || (label.equalsIgnoreCase("light2"))) {
-                FetchTaskMail mailtask = new FetchTaskMail();
+
+                FetchTaskMail mailtask = new FetchTaskMail(label);
                 mailtask.execute();
             }
         }

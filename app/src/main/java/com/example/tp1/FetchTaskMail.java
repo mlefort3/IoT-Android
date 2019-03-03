@@ -5,7 +5,11 @@ import android.util.Log;
 import com.example.tp1.JSSEProvider;
 
 public class FetchTaskMail extends AsyncTask<String, Void, Void> {
+    private String nom;
 
+    public FetchTaskMail(String name){
+        this.nom=name;
+    }
     protected void onPreExecute(){
         super.onPreExecute();
     }
@@ -15,7 +19,7 @@ public class FetchTaskMail extends AsyncTask<String, Void, Void> {
 
         GMailSender sender = new GMailSender("JavaMail.TP@gmail.com", "V3ry_strong_pw");
         try {
-            sender.sendMail("Test", "body", "maxence.lefort@telecomnancy.net", "m.lefort3@gmail.com");
+            sender.sendMail("TP Androïd", "La lumière "+nom+" est alumée" , "maxence.lefort@telecomnancy.net", "m.lefort3@gmail.com");
             Log.d("MainActivity","envoie?");
         }
         catch (Exception e) {

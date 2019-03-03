@@ -17,7 +17,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         boolean atboot = prefs.getBoolean("checked", false);
         if (atboot) {
-            context.startService(new Intent(context, ServiceGet.class));
+            context.startForegroundService(new Intent(context, ServiceGet.class));
         }
     }
 }
