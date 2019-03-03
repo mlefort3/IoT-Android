@@ -105,8 +105,10 @@ public class MainActivity extends AppCompatActivity {
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
-                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                new FetchTaskMail().execute();
+
+               // new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+              /*  Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
                String[] recipients = new String[]{"yann.ricci@gmail.com", "",};
                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recipients);
                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Test");
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 emailIntent.setType("text/plain");
                 startActivity(Intent.createChooser(emailIntent, "Send mail..."));
                // finish();
-
+            */
             }
         });
     }
