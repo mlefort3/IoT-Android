@@ -1,4 +1,7 @@
 package com.example.tp1;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
@@ -14,6 +17,7 @@ import java.net.URL;
 import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FetchData extends AsyncTask<String, Void, String> {
 
@@ -188,6 +192,20 @@ public class FetchData extends AsyncTask<String, Void, String> {
             } else if (name.equals("value")) {
                 value = reader.nextDouble();
                 System.out.println(value);
+                if(value>1){
+                if(label.equals("light1")||label.equals("light2")){
+                    System.out.println("OOOOOOOOOOOOOOPPPPPPP");
+                    NotificationManager notif= (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+                    Notification notify=new Notification.Builder
+                            (activity.getApplicationContext()).setContentTitle("Motes TP").setContentText("Lumière allumée").
+                            setContentTitle(label).setSmallIcon(R.drawable.ic_all_it_black_v24dp).build();
+
+                    notify.flags |= Notification.FLAG_AUTO_CANCEL;
+                    notif.notify(0, notify);
+
+                    }
+                }
+
             } else if (name.equals("mote")) {
                 moteAddress = reader.nextString();
                 System.out.println(moteAddress);

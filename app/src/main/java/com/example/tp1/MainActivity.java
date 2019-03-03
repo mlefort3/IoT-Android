@@ -44,20 +44,18 @@ public class MainActivity extends AppCompatActivity {
     //Boolean atboot = prefs.getBoolean("checked", false);
 
     public boolean button1clicked = false;
-
-
     public Data[] datalist;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //startService(new Intent(this, ServiceGet.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "Création de l'activité");
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean atboot = prefs.getBoolean("checked", false);
-
 
         //stopService(new Intent(this, MainService.class));
 

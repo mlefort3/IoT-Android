@@ -15,7 +15,7 @@ public class ServiceGet extends Service {
 
 
     }
-
+    MainActivity activity;
     Timer timer = new Timer();
 
     public void onCreate(){
@@ -24,7 +24,15 @@ public class ServiceGet extends Service {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+                    //                     new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+                        FetchData taskdata = new FetchData(activity);
+                        //taskdata.execute("http://iotlab.telecomnancy.eu/rest/data/1/temperature/last",
+                        //"http://iotlab.telecomnancy.eu/rest/data/1/humidity/last");
+                        taskdata.execute(new String[]{"http://iotlab.telecomnancy.eu/rest/data/1/temperature/last",
+                                "http://iotlab.telecomnancy.eu/rest/data/1/humidity/last",
+                                "http://iotlab.telecomnancy.eu/rest/data/1/battery_voltage/last",
+                                "http://iotlab.telecomnancy.eu/rest/data/1/light1/last",
+                                "http://iotlab.telecomnancy.eu/rest/data/1/light2/last"});
                     }
                 });
             }

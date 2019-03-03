@@ -59,6 +59,8 @@ public class DataListAdaptater extends BaseAdapter {
         holder.valueTextView.setText("Valeur : "+Data.value);
         holder.moteAddressTextView.setText("Adresse de la mote : "+Data.moteAddress);
 
+
+
         return convertView;
     }
 
