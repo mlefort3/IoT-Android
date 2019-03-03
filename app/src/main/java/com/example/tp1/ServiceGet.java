@@ -24,7 +24,7 @@ public class ServiceGet extends Service {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        new FetchTask().execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
+                        new FetchTask(new MotesListActivity()).execute("http://iotlab.telecomnancy.eu/rest/data/1/light1/last");
                     }
                 });
             }
