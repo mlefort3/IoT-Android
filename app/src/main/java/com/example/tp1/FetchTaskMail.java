@@ -11,7 +11,7 @@ public class FetchTaskMail extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... strings) {
-        GMailSender sender = new GMailSender("yann.ricci@gmail.com", "My_1mp0rtant_mail");
+        GMailSender sender = new GMailSender("yann.ricci@gmail.com", "*****");
         try {
             sender.sendMail("Test", "body", "yann.ricci@telecomnancy.net", "yann.ricci@gmail.com");
             Log.d("MainActivity","envoie?");
